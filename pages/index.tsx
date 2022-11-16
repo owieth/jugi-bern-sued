@@ -1,77 +1,46 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  Divider,
-  FormControl,
-  FormLabel,
-  Heading,
-  HStack,
-  Input,
-  Stack,
-  Text,
-  useBreakpointValue,
-  useColorModeValue,
-} from '@chakra-ui/react'
-import * as React from 'react'
-import { Logo } from './components/Logo'
-import { OAuthButtonGroup } from './components/OAuthButtonGroup'
-import { PasswordField } from './components/PasswordField'
+import { Box, ButtonGroup, Divider, Flex, IconButton, Img, Stack, Text } from '@chakra-ui/react'
+import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa'
+import { Login } from './components/Login'
 
 export default function Home() {
   return (
-    <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
-      <Stack spacing="8">
-        <Stack spacing="6">
-          <Logo />
-          <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
-            <Heading size={useBreakpointValue({ base: 'xs', md: 'sm' })}>
-              Log in to your account
-            </Heading>
-            <HStack spacing="1" justify="center">
-              <Text color="muted">Don't have an account?</Text>
-              <Button variant="link" colorScheme="blue">
-                Sign up
-              </Button>
-            </HStack>
-          </Stack>
-        </Stack>
-        <Box
-          py={{ base: '0', sm: '8' }}
-          px={{ base: '4', sm: '10' }}
-          bg={useBreakpointValue({ base: 'transparent', sm: 'bg-surface' })}
-          boxShadow={{ base: 'none', sm: useColorModeValue('md', 'md-dark') }}
-          borderRadius={{ base: 'none', sm: 'xl' }}
+    // <Flex direction="column" flex="1">
+    //   <Navbar />
+    //   <Content />
+    //   <Footer />
+    // </Flex>
+
+    <Flex direction="row" flex="1">
+      <Box w='50%'>
+        <Img src='https://bit.ly/dan-abramov' alt='Dan Abramov' style={{ height: '100vh' }} />
+      </Box>
+
+      <Flex direction="column" flex="1" align="center">
+        <Login />
+
+        <Divider />
+        <Stack
+          pt="8"
+          pb="12"
+          justify="space-between"
+          direction={{ base: 'column-reverse', md: 'row' }}
+          align="center"
         >
-          <Stack spacing="6">
-            <Stack spacing="5">
-              <FormControl>
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <Input id="email" type="email" />
-              </FormControl>
-              <PasswordField />
-            </Stack>
-            <HStack justify="space-between">
-              <Checkbox defaultChecked>Remember me</Checkbox>
-              <Button variant="link" colorScheme="blue" size="sm">
-                Forgot password?
-              </Button>
-            </HStack>
-            <Stack spacing="6">
-              <Button variant="primary">Sign in</Button>
-              <HStack>
-                <Divider />
-                <Text fontSize="sm" whiteSpace="nowrap" color="muted">
-                  or continue with
-                </Text>
-                <Divider />
-              </HStack>
-              <OAuthButtonGroup />
-            </Stack>
-          </Stack>
-        </Box>
-      </Stack>
-    </Container>
+          <Text fontSize="sm" color="subtle">
+            &copy; {new Date().getFullYear()} Jugi Bern Süd. All rights reserved.
+          </Text>
+          <ButtonGroup variant="ghost">
+            <IconButton
+              as="a"
+              href="#"
+              aria-label="LinkedIn"
+              icon={<FaLinkedin fontSize="1.25rem" />}
+            />
+            <IconButton as="a" href="#" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
+            <IconButton as="a" href="#" aria-label="Twitter" icon={<FaTwitter fontSize="1.25rem" />} />
+          </ButtonGroup>
+        </Stack>
+      </Flex>
+    </Flex >
   )
 }
